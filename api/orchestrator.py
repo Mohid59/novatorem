@@ -408,6 +408,11 @@ def make_svg(
     # Generate bar CSS with audio features and per-bar colors
     bar_css = generate_bar_css(bar_count, beat_duration_ms, energy, bar_palette)
 
+    # Freeze the equalizer animation when nothing is actively playing, so an
+    # idle/paused card does not look like it is currently playing.
+    if not track_data.get("is_playing", False):
+        bar_css += "\n.bar { animation: none !important; }"
+
     # --- SVG bar positioning ---
     # Compute the bar area rectangle in SVG user-space coordinates.
     # x: content starts after left-padding + border + album art + gap
