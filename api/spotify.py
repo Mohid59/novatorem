@@ -312,8 +312,8 @@ def get_now_playing() -> dict[str, Any]:
     except NoTracksError:
         pass  # Fall through to get recent tracks
 
-    # If not currently playing, get from recently played
-    if item is None:
+    # If not currently playing (no track, or track is paused), get from recently played
+    if item is None or not is_playing:
         data = _api_get(f"{spotify_config.recently_played_url}?limit=10")
         items = data.get("items", [])
 
