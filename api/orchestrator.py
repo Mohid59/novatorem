@@ -409,6 +409,17 @@ def make_svg(
     bar_css = ""
     bar_svg = ""
 
+    # Width available for the text column (used for marquee overflow calc):
+    # full card width minus paddings, borders, album art and the art/content gap.
+    bar_area_width = (
+        cfg.width
+        - cfg.widget_padding_left
+        - cfg.widget_padding_right
+        - 2 * cfg.widget_border_width
+        - cfg.album_art_size
+        - cfg.art_content_gap
+    )
+
     # Set status text based on playing state
     is_playing = track_data.get("is_playing", False)
     status = "Vibing to:" if is_playing else "Recently played:"
