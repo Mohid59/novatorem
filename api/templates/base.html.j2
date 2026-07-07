@@ -194,7 +194,8 @@
                     display: inline-block;
                     white-space: nowrap;
                     font-size: {{ song_font_size }}px;
-                    font-weight: 500;
+                    font-weight: 700;
+                    letter-spacing: -0.4px;
                     background: linear-gradient(125deg, var(--song-color-1), var(--song-color-2));
                     background-size: 200% 100%;
                     background-position: 0% 50%;
@@ -276,9 +277,10 @@
                 
                 /* Add glow effect to album art matching the palette */
                 .container.blur-bg.blur-dark .cover {
-                    box-shadow: 
-                        0 4px 15px rgba(0, 0, 0, 0.4),
-                        0 0 20px var(--bar-glow);
+                    box-shadow:
+                        0 6px 20px rgba(0, 0, 0, 0.55),
+                        0 0 24px var(--bar-glow),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
                 }
 
                 /* Spacer reserves vertical space where SVG bars are overlaid */
@@ -289,10 +291,13 @@
                 }
 
                 .status {
-                    font-size: 12px;
+                    font-size: 10px;
                     text-align: center;
-                    margin-bottom: 4px;
-                    opacity: 0.7;
+                    margin-bottom: 7px;
+                    opacity: 0.6;
+                    text-transform: uppercase;
+                    letter-spacing: 2.5px;
+                    font-weight: 600;
                     background: linear-gradient(-125deg, var(--song-color-1), var(--song-color-2));
                     background-size: 200% 100%;
                     -webkit-text-fill-color: transparent;
