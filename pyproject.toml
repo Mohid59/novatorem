@@ -1,2 +1,4 @@
 [tool.vercel]
 entrypoint = "api.orchestrator:app"
+
+# vercel python entrypoint fix
