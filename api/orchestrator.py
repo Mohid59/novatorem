@@ -405,61 +405,9 @@ def make_svg(
     song_palette = normalize_text_palette(song_palette)
     bar_palette = normalize_text_palette(bar_palette, min_l=0.3, max_l=0.7)
 
-    # Generate bar CSS with audio features and per-bar colors
-    bar_css = generate_bar_css(bar_count, beat_duration_ms, energy, bar_palette)
-
-    # Freeze the equalizer animation when nothing is actively playing, so an
-    # idle/paused card does not look like it is currently playing.
-    if not track_data.get("is_playing", False):
-        bar_css += "\n.bar { animation: none !important; }"
-
-    # --- SVG bar positioning ---
-    # Compute the bar area rectangle in SVG user-space coordinates.
-    # x: content starts after left-padding + border + album art + gap
-    bar_x_start = (
-        cfg.widget_padding_left
-        + cfg.widget_border_width
-        + cfg.album_art_size
-        + cfg.art_content_gap
-    )
-    bar_x_end = (
-        cfg.width
-        - cfg.widget_padding_right
-        - cfg.widget_border_width
-    )
-    bar_area_width = bar_x_end - bar_x_start
-
-    # y: the .content column (text + bars) is vertically centred in .main
-    # independently of the album art.  Estimate its bottom edge.
-    inner_h = (
-        cfg.height
-        - (cfg.widget_padding_top + cfg.widget_border_width)
-        - (cfg.widget_padding_bottom + cfg.widget_border_width)
-    )
-    content_h = cfg.content_column_height
-    
-    # Align bars to bottom of album art (which is vertically centered)
-    # Album art vertical center is same as container center
-    # So bottom is center + half size
-    center_y = (
-        cfg.widget_padding_top 
-        + cfg.widget_border_width 
-        + inner_h / 2
-    )
-    
-    # If we want bars aligned to bottom of art:
-    bars_y_bottom = center_y + (cfg.album_art_size / 2)
-
-    bar_max_height = int(cfg.eq_bar_max_height + energy * 8)
-    bar_svg = generate_bar_svg(
-        bar_count,
-        bar_x_start,
-        bars_y_bottom,
-        bar_area_width,
-        bar_max_height,
-        gap=cfg.eq_bar_gap,
-        bar_palette=bar_palette,
-    )
+    # Equalizer bars removed for a minimalist card design.
+    bar_css = ""
+    bar_svg = ""
 
     # Set status text based on playing state
     is_playing = track_data.get("is_playing", False)

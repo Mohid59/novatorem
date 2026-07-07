@@ -71,7 +71,7 @@ class SVGConfig:
     width: int = 540
     height: int = 135
     album_art_size: int = 121
-    border_radius: int = 5
+    border_radius: int = 14
 
     # Widget container layout (injected into CSS via template variables)
     widget_padding_top: int = 7
